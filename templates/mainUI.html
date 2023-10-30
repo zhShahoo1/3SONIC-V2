@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultrasound UI</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='bulma/css/bulma.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='fa/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}"> <!-- Add your custom styles here -->
+    <script src="{{url_for('static', filename='mine.js')}}"></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="title">Ultrasound</h1>
+    </header>
+    <nav>
+        <!-- Simplified navigation menu -->
+        <ul>
+            <li><a href="#">Ultrasound</a></li>
+            <li><a href="#">Overview Video</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="card">
+            <div class="card-image">
+                <img src="your-image-source.jpg" alt="Ultrasound Image">
+            </div>
+        </section>
+        <section class="controls">
+            <!-- Minimalist control buttons -->
+            <button class="btn">Scan</button>
+            <button class="btn">Multi path (2)</button>
+            <button class="btn">Save settings</button>
+        </section>
+    </main>
+    <footer>
+        <!-- Simple footer content -->
+        <button class="btn btn-danger">Shutdown</button>
+    </footer>
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultrasound UI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="title">Ultrasound</h1>
+    </header>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="#">Ultrasound</a></li>
+            <li class="nav-item"><a href="#">Overview Video</a></li>
+        </ul>
+    </nav>
+    <main class="main">
+        <section class="card">
+            <div class="card-image">
+                <img src="https://via.placeholder.com/400x300" alt="Ultrasound Image">
+            </div>
+        </section>
+        <section class="controls">
+            <button class="btn">Scan</button>
+            <button class="btn">Multi path (2)</button>
+            <button class="btn">Save settings</button>
+        </section>
+    </main>
+    <footer class="footer">
+        <button class="btn btn-danger">Shutdown</button>
+    </footer>
+</body>
+
+</html>
