@@ -1,15 +1,5 @@
-import os
-import time
+import sys
 import subprocess as sp
-from webcam_feed import camera, generate_frames
-from flask import Flask, render_template, Response
-import ultrasound
-from flask import Flask, render_template, Response
-import pathosonicscannercontrol as pssc 
-import cam
-from make_volume import make_volume # Theresa's import
-
-#### Uncomment it when you need to install any of these libraries: ###
 """
 # Define a list of required libraries
 required_libraries = [
@@ -22,17 +12,25 @@ required_libraries = [
     'imageio',
     'scikit-image',
     'opencv-python',
-    'pandas'
+    'pandas',
 ]
 
-# Install required libraries
+# Install required libraries using the currently running Python interpreter
 for library in required_libraries:
     try:
-        sp.check_call(['pip', 'install', library])
+        sp.check_call([sys.executable, '-m', 'pip', 'install', library])
     except sp.CalledProcessError:
         print(f"Failed to install {library}. Please install it manually.")
-
 """
+import os
+import time
+from webcam_feed import camera, generate_frames
+from flask import Flask, render_template, Response
+import ultrasound
+import pathosonicscannercontrol as pssc
+import cam
+from make_volume import make_volume
+
 
 #CATCH "Probe not detected" at init. Fidn in record.py
 #Get CAM number
