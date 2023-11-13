@@ -41,7 +41,18 @@ function Process(){
 };
 // end of Theresa's function
 
+//added af Z:
+function Increase(){
+	const xhr = new XMLHttpRequest();
+	xhr.open("GET", "http://127.0.0.1:5000/increase");
+	xhr.send()
+};
 
+function Decrease(){
+	const xhr = new XMLHttpRequest();
+	xhr.open("GET", "http://127.0.0.1:5000/processing");
+	xhr.send()
+};
 function ulshow() {
     document.getElementById('im1').style.display = 'block'; // Display the ultrasound image
     document.getElementById('im2').style.display = 'none';  // Hide the webcam feed

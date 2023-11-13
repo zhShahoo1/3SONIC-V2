@@ -1,6 +1,6 @@
 import sys
 import subprocess as sp
-"""
+
 # Define a list of required libraries
 required_libraries = [
     'flask',
@@ -21,7 +21,7 @@ for library in required_libraries:
         sp.check_call([sys.executable, '-m', 'pip', 'install', library])
     except sp.CalledProcessError:
         print(f"Failed to install {library}. Please install it manually.")
-"""
+
 import os
 import time
 from webcam_feed import camera, generate_frames
@@ -64,6 +64,7 @@ def start():
 
 	instructions = [
 	"1. Make sure probe is...",
+	
 	"2. Fingers away",
 	"56. Confirm"
 	]

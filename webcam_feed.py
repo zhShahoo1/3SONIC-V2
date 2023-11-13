@@ -1,14 +1,17 @@
 import cv2
 
-def get_first_external_camera():
-    camera = cv2.VideoCapture(1)  # Index 1 usually refers to the first external webcam
-    success, _ = camera.read()
-    if success:
-        return camera
-    camera.release()
+def find_external_camera(start_index=1, max_index=3):
+    for i in range(start_index, max_index):
+        camera = cv2.VideoCapture(i)
+        if camera is not None and camera.isOpened():
+            success, _ = camera.read()
+            if success:
+                print(f"External camera found at index {i}")
+                return camera
+            camera.release()
     return None
 
-camera = get_first_external_camera()
+camera = find_external_camera()
 
 if camera is None:
     print("No accessible external camera found!")
