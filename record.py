@@ -8,13 +8,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 import subprocess as sp
-import os
-from ctypes import cdll
+
+
+
 import sys
+
+
 import pathosonicscannercontrol as pssc
-
-
-
 
 multiscan = str(sys.argv[1])
 
@@ -103,20 +103,8 @@ n_samples = int(round(total_samples))
 
 with open("recdir",'w') as f: f.write("%s" % (measurement_directory))
 
-#Loading dll
-
-
-
-# Assuming the DLL is in the same directory as your script
-dll_path = os.path.join(os.path.dirname(__file__), 'usgfw2wrapper.dll')
-usgfw2 = cdll.LoadLibrary(dll_path)
-
-
-
-#usgfw2 = cdll.LoadLibrary('D:/DARBAS/Real_time_matlab/usgfw2matlab_sources/usgfw2MATLAB/x64/Release/usgfw2MATLAB_wrapper.dll')
-#usgfw2 = cdll.LoadLibrary(r'C://Users//CAMES VR 3//Documments//3Sonic-V1//PCULTRASOUND//Real-time_imaging_for_the_research//usgfw2wrapper_C++_sources//usgfw2wrapper//x64//Release//usgfw2wrapper.dll')
-#usgfw2 = cdll.LoadLibrary(r'C:/Users/CAMES VR 3/Documments/3Sonic-V1/PCULTRASOUND/Real-time_imaging_for_the_research/usgfw2wrapper_C++_sources/usgfw2wrapper/x64/Release/usgfw2wrapper.dll') 
-#usgfw2 = cdll.LoadLibrary(r'C:\Users\CAMES VR 3\Documents\3Sonic-v1\PCULTRASOUND\Real-time_imaging_for_the_research\usgfw2wrapper_C++_sources\usgfw2wrapper\x64\Release\usgfw2wrapper.dll')
+#Loading dll (Update directory for your own system)
+usgfw2 = cdll.LoadLibrary(r'C:/Users/zsha0021/Documents/3SONIC-V2/usgfw2wrapper.dll') 
 
 usgfw2.on_init()
 ERR = usgfw2.init_ultrasound_usgfw2()
@@ -213,7 +201,7 @@ for i in range(0,n_samples):
 	usgfw2.return_pixel_values(ctypes.pointer(p_array)) #Get pixels
 
 	buffer_as_numpy_array = np.frombuffer(p_array,np.uint32)
-	#buffer_as_numpy_array = np.frombuffer(p_array, np.uint32)  
+
 	reshaped_array = np.reshape(buffer_as_numpy_array,(w, h, 4))
 
 	usgfw2.get_resolution(ctypes.pointer(res_X),ctypes.pointer(res_Y)) #Get resolution
@@ -221,28 +209,17 @@ for i in range(0,n_samples):
 	np.save(measurement_directory+ os.sep + str(i) , reshaped_array[:,:,0].astype(np.uint32))
 
 	if i % 10 == 0: print(i)
-
-	#im = Image.fromarray(myframe, mode='F') # float32
-	#im.save(measurement_directory+ os.sep + str(i) + ".tiff", "TIFF")
-
-	#im = Image.fromarray(myframe) # float32
-	#im.save(measurement_directory+ os.sep + str(i)+"_"+str(int(start_time*1000)) + ".png")
+ 
 	endtime = time.time()
 	
 	deltatime = (endtime - start_time)*1000
-	#print(sample_time-deltatime,deltatime,start_time-time.time())
+
 	try:
 		time.sleep((sample_time - deltatime)/1000)
 	except ValueError:
 		continue
 
 	t_list.append((time.time()-start_time)*1000)
-
-
-	#, cmax=...
-
-
-
 
 
 usgfw2.Freeze_ultrasound_scanning()
@@ -260,5 +237,4 @@ print(np.mean(t_list),np.std(t_list))
 
 
 del usgfw2
-
 

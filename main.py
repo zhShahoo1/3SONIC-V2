@@ -1,5 +1,4 @@
-import sys
-import subprocess as sp
+
 import os
 import time
 from webcam_feed import camera, generate_frames
@@ -8,6 +7,7 @@ import ultrasound
 import pathosonicscannercontrol as pssc
 import cam
 from make_volume import make_volume
+import subprocess as sp
 
 
 

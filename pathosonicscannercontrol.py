@@ -286,13 +286,6 @@ def get_position():
 
 #print("return", get_position())
 
-#homeZ()
-
-#go2INIT()
-#time.sleep(3)
-#go2StartScan()
-#time.sleep(2)
-#ScanPath()
 
 def unknowns():
     #Fatemeh feed rate 0.1mm/s = 6 mm/min
@@ -314,8 +307,4 @@ def unknowns():
             scs_cmd = getposition(ser)
             time.sleep(.2)
         
-        #for i in range(0,5):
-        #    T1,T2 = gettemperature(ser)
-        #    print("Temperatures: ", T1, T2)
-            #ser.write(str.encode("M117 "+str(i)+"\r\n"))
-        #    time.sleep(1)
+    

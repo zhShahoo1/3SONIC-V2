@@ -63,15 +63,11 @@ if __name__ == "__main__":
         except FileExistsError:
             pass
 
-    all_files = [f for f in os.listdir(processdir) if f.endswith(".npy")]
+    all_files = [f for f in os.listdir(processdir) if f.endswith(".npy") and 320 <= int(f.split(".")[0]) <= 1250]
     all_files.sort()
 
-    total_files = len(all_files)
-    start_index = total_files // 4
-    end_index = 3 * total_files // 4
-
     # Package each file name together with the processdir into a tuple
-    args_for_map = [(file, processdir) for file in all_files[start_index:end_index]]
+    args_for_map = [(file, processdir) for file in all_files]
     with Pool() as p:
         p.map(process_file, args_for_map)
 
