@@ -103,8 +103,14 @@ n_samples = int(round(total_samples))
 
 with open("recdir",'w') as f: f.write("%s" % (measurement_directory))
 
-#Loading dll (Update directory for your own system)
-usgfw2 = cdll.LoadLibrary(r'C:/Users/zsha0021/Documents/3SONIC-V2/usgfw2wrapper.dll') 
+#Loading dll
+
+# the path to the DLL
+dll_path = os.path.join(script_dir, 'usgfw2wrapper.dll')
+
+usgfw2 = cdll.LoadLibrary(dll_path)
+
+#usgfw2 = cdll.LoadLibrary(r'C:/Users/zhsha/OneDrive/Desktop/3sonic-2/3SONIC-V2/usgfw2wrapper.dll') 
 
 usgfw2.on_init()
 ERR = usgfw2.init_ultrasound_usgfw2()
@@ -201,7 +207,7 @@ for i in range(0,n_samples):
 	usgfw2.return_pixel_values(ctypes.pointer(p_array)) #Get pixels
 
 	buffer_as_numpy_array = np.frombuffer(p_array,np.uint32)
-
+	#buffer_as_numpy_array = np.frombuffer(p_array, np.uint32)  
 	reshaped_array = np.reshape(buffer_as_numpy_array,(w, h, 4))
 
 	usgfw2.get_resolution(ctypes.pointer(res_X),ctypes.pointer(res_Y)) #Get resolution
@@ -209,17 +215,21 @@ for i in range(0,n_samples):
 	np.save(measurement_directory+ os.sep + str(i) , reshaped_array[:,:,0].astype(np.uint32))
 
 	if i % 10 == 0: print(i)
- 
+
+
 	endtime = time.time()
 	
 	deltatime = (endtime - start_time)*1000
-
+	#print(sample_time-deltatime,deltatime,start_time-time.time())
 	try:
 		time.sleep((sample_time - deltatime)/1000)
 	except ValueError:
 		continue
 
 	t_list.append((time.time()-start_time)*1000)
+
+
+	
 
 
 usgfw2.Freeze_ultrasound_scanning()
@@ -230,7 +240,7 @@ try:
 	usgfw2.Close_and_release() 
 except:
 	pass
-#t_list = np.array(t_list)
+
 sp.Popen(["py", myp + os.sep + "imconv.py"]) # This one changes scanning file to 0 when ended
 
 print(np.mean(t_list),np.std(t_list))
