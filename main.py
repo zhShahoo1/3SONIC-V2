@@ -1,27 +1,5 @@
 import sys
 import subprocess as sp
-
-# Define a list of required libraries
-required_libraries = [
-    'flask',
-    'flask-socketio',
-    'pyserial',
-    'pydicom',
-    'numpy',
-    'tqdm',
-    'imageio',
-    'scikit-image',
-    'opencv-python',
-    'pandas',
-]
-
-# Install required libraries using the currently running Python interpreter
-for library in required_libraries:
-    try:
-        sp.check_call([sys.executable, '-m', 'pip', 'install', library])
-    except sp.CalledProcessError:
-        print(f"Failed to install {library}. Please install it manually.")
-
 import os
 import time
 from webcam_feed import camera, generate_frames
@@ -31,11 +9,6 @@ import pathosonicscannercontrol as pssc
 import cam
 from make_volume import make_volume
 
-
-#CATCH "Probe not detected" at init. Fidn in record.py
-#Get CAM number
-#get serial COM port numbe
-#pssc.go2INIT()
 
 
 #File to enable waiting in multiscan.
@@ -235,9 +208,6 @@ def Process():
 
 
 # Theresa's contribution end 
-
-
-#@socket_.on('do_task', namespace='/test')
 
 
 # main driver function

@@ -1,0 +1,17 @@
+#To install these requirements you need to do as following:
+# Navigate to your project virtual envirement directory and then:  
+# For windows in Command Prompt (CMD) or PowerShell run:  python -m pip install -r requirements.txt
+# For MacOs in terminal:                                  python3 -m pip install -r requirements.txt
+# For Linux in terminal:                                  python3 -m pip install -r requirements.txt
+                    
+flask
+flask-socketio
+pyserial
+pydicom
+numpy
+tqdm
+imageio
+scikit-image
+opencv-python
+pandas
+matplotlib
